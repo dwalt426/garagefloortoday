@@ -1,0 +1,222 @@
+# GarageFloorToday v1.1 — Release Manifest
+# Generated 2026-07-03T20:45:18.660Z from the actual repository tree.
+# 143 files across 74 directories (excludes node_modules, .next, .git).
+# Compare your unzipped release against this list to confirm nothing is missing.
+
+.github/
+  workflows/
+    ci.yml
+app/
+  [slug]/
+    page.tsx
+  admin/
+    content/
+      page.tsx
+    leads/
+      LeadStageControl.tsx
+      page.tsx
+    pricing/
+      page.tsx
+      PricingEditor.tsx
+    reviews/
+      page.tsx
+      ReviewModerationControl.tsx
+    layout.tsx
+    page.tsx
+  coatings/
+    [slug]/
+      page.tsx
+    compare/
+      page.tsx
+  crew/
+    [projectId]/
+      BatchForm.tsx
+      CloseProjectControl.tsx
+      JobChecklist.tsx
+      page.tsx
+      ReadingsForm.tsx
+    layout.tsx
+    page.tsx
+  design-system/
+    page.tsx
+  estimate/
+    page.tsx
+  learn/
+    [slug]/
+      page.tsx
+    page.tsx
+  legal/
+    cookies/
+      page.tsx
+    privacy/
+      page.tsx
+    terms/
+      page.tsx
+  locations/
+    [...slug]/
+      page.tsx
+  login/
+    LoginForm.tsx
+    page.tsx
+  lookup/
+    page.tsx
+  portal/
+    maintenance/
+      page.tsx
+    transfer/
+      page.tsx
+      ReferralForm.tsx
+      TransferForm.tsx
+    warranty/
+      page.tsx
+    layout.tsx
+    page.tsx
+  services/
+    [slug]/
+      page.tsx
+  templates/
+    BrandPage.tsx
+    CityServicePage.tsx
+    LocationPage.tsx
+    ServiceLandingPage.tsx
+    StatePage.tsx
+    Templates.tsx
+  tools/
+    cost-calculator/
+      page.tsx
+    engineer-my-floor/
+      page.tsx
+    financing/
+      page.tsx
+    visualizer/
+      page.tsx
+    tool-shell.tsx
+  actions.ts
+  admin-actions.ts
+  crew-actions.ts
+  error.tsx
+  globals.css
+  HomePage.tsx
+  layout.tsx
+  loading.tsx
+  manifest.ts
+  not-found.tsx
+  page.tsx
+  portal-actions.ts
+  robots.ts
+  sitemap.ts
+components/
+  buttons/
+    Button.tsx
+  cards/
+    Cards.tsx
+  floorpassport/
+    FloorPassportCard.tsx
+  hero/
+    CinematicHero.tsx
+  layout/
+    GlobalLayout.tsx
+  motion/
+    Motion.tsx
+  navigation/
+    Navigation.tsx
+  timeline/
+    InstallationTimeline.tsx
+content/
+  legal/
+    cookies.md
+    privacy.md
+    terms.md
+data/
+  blends.ts
+  brand-pages-1.ts
+  brand-pages-2.ts
+  homepage.ts
+  learn-articles-1.ts
+  learn-articles-2.ts
+  service-pages-1.ts
+  service-pages-2.ts
+  system-pages.ts
+docs/
+  BrandGuide.md
+  BUILD_LOG.md
+  Deployment.md
+  Hardening.md
+  Hostinger.md
+  LaunchChecklist.md
+  TestingGuide.md
+e2e/
+  loop.spec.ts
+  public.spec.ts
+  README.md
+features/
+  color-explorer/
+  compare/
+  estimator/
+    pricing.ts
+    SmartEstimator.tsx
+  financing/
+  floor-finder/
+    FloorFinder.tsx
+  passport-demo/
+  shared/
+    form.tsx
+  visualizer/
+    tools.tsx
+hooks/
+lib/
+  auth/
+    session.ts
+  storage/
+  log.ts
+  queries-crew.ts
+  queries-locations.ts
+  queries-portal.ts
+  queries.ts
+  rate-limit.ts
+  schema-crew.sql
+  schema-crm.sql
+  schema-locations.sql
+  schema-org.ts
+  schema-pricing.sql
+  schema.sql
+  seed-locations.sql
+  seed.sql
+  supabase-server.ts
+public/
+  {hero,services,crews,projects,logos,blends,icons}/
+  hero/
+    hero-mustang-wide.png
+    hero-social-comp.png
+  logos/
+    gft-seal-badge.png
+    gft-seal-circle.png
+scripts/
+  check-a11y.mjs
+  check-contrast.mjs
+  check-links.mjs
+  check-uniqueness.mjs
+  generate-manifest.mjs
+  release-audit.mjs
+styles/
+  tokens.ts
+supabase/
+types/
+  index.ts
+utils/
+.env.example
+.gitignore
+DEPLOYMENT.md
+EXPERIENCE_SPEC.md
+HARDENING.md
+HOSTINGER.md
+MANIFEST.txt
+middleware.ts
+next.config.js
+package.json
+playwright.config.ts
+postcss.config.js
+README.md
+tailwind.config.ts
+tsconfig.json
+V1_LAUNCH_CHECKLIST.md
