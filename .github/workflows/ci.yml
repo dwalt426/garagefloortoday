@@ -1,0 +1,38 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - name: Type check
+        run: npm run typecheck
+      - name: Link integrity
+        run: npm run test:links
+      - name: Content uniqueness
+        run: npm run test:uniqueness
+      - name: Accessibility (static)
+        run: npm run test:a11y
+      - name: Contrast (WCAG AA)
+        run: npm run test:contrast
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
+          NEXT_PUBLIC_SITE_URL: https://garagefloortoday.com
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: E2E — public surface + role isolation (no fixtures needed)
+        run: npm start & npx wait-on http://localhost:3000 && npm run test:e2e
+        env:
+          E2E_BASE_URL: http://localhost:3000
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with: { name: playwright-report, path: playwright-report/, retention-days: 14 }
