@@ -17,7 +17,7 @@ export function JobChecklist({ projectId, checklist }: { projectId: string; chec
   const [pending, start] = useTransition();
 
   function toggle(key: string, value: boolean) {
-    start(() => updateChecklist({ projectId, key, value }));
+    start(async () => { await updateChecklist({ projectId, key, value }); });
   }
 
   return (
