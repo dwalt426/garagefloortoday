@@ -4,7 +4,7 @@ import { getSessionUser } from "../../lib/auth/session";
 
 export default async function CrewLayout({ children }: { children: React.ReactNode }) {
   const user = await getSessionUser();
-  if (!user || user.role !== "installer") redirect("/login?next=/crew");
+  if (!user || user.role !== "installer") return redirect("/login?next=/crew");
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#F6F1E7" }}>
       <header className="border-b border-gft-gray300 bg-white px-6 py-4 flex items-center justify-between">

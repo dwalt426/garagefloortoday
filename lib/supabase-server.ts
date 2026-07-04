@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import type { CookieOptions } from "@supabase/ssr";
 
 /** Server-side Supabase client for Server Components, Route Handlers,
  *  and Server Actions. Uses the anon key + user session cookies (RLS applies).
@@ -12,9 +13,10 @@ export async function createClient() {
     {
       cookies: {
         getAll: () => cookieStore.getAll(),
-        setAll: (list) => list.forEach(({ name, value, options }) => {
-          try { cookieStore.set(name, value, options); } catch { /* Server Component */ }
-        }),
+        setAll: (list: { name: string; value: string; options: CookieOptions }[]) =>
+          list.forEach(({ name, value, options }) => {
+            try { cookieStore.set(name, value, options); } catch { /* Server Component */ }
+          }),
       },
     }
   );

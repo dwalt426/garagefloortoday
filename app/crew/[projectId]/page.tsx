@@ -11,7 +11,7 @@ export const metadata = { title: "Job Detail", robots: { index: false } };
 export default async function JobDetailPage({ params }: { params: Promise<{ projectId: string }> }) {
   const { projectId } = await params;
   const job = await getCrewJobDetail(projectId);
-  if (!job) notFound(); // RLS returns null if not assigned — same result as "doesn't exist"
+  if (!job) return notFound(); // RLS returns null if not assigned — same result as "doesn't exist"
 
   return (
     <div>

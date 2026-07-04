@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
 
   if (slug.length === 1) {
     const data = await getStatePageData(slug[0]);
-    if (!data) notFound();
+    if (!data) return notFound();
     return (<>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(
         breadcrumbLd([{ name: "Home", path: "/" }, { name: "Locations", path: "/locations" }, { name: data.state, path: `/locations/${data.slug}` }])) }} />
@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
 
   if (slug.length === 2) {
     const data = await getCityPageData(slug.join("/"));
-    if (!data) notFound();
+    if (!data) return notFound();
     const jsonLd = [
       localBusinessLd(data.city, data.stateAbbr),
       breadcrumbLd([{ name: "Home", path: "/" }, { name: "Locations", path: "/locations" }, { name: `${data.city}, ${data.stateAbbr}`, path: `/locations/${slug.join("/")}` }]),
@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
 
   if (slug.length === 3) {
     const data = await getCityServiceData(slug.slice(0, 2).join("/"), slug[2]);
-    if (!data) notFound();
+    if (!data) return notFound();
     const jsonLd = [
       localBusinessLd(data.city, data.stateAbbr),
       breadcrumbLd([

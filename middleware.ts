@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 
 /** Protects the three portals. Public marketing/SEO pages are untouched.
  *  Role is read from a `role` claim in app_metadata (set via Supabase on signup/

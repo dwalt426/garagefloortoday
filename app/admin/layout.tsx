@@ -14,7 +14,7 @@ const NAV = [
  */
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const user = await getSessionUser();
-  if (!user || user.role !== "admin") redirect("/login?next=/admin/leads");
+  if (!user || user.role !== "admin") return redirect("/login?next=/admin/leads");
 
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: "#F6F1E7" }}>
