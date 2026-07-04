@@ -15,11 +15,24 @@ import type {
 export const hero = {
   h1: "Beautiful Garage Floors. Built to Perform for Decades.",
   subhead:
-    "Premium concrete coating systems engineered for your home, professionally installed with meticulous preparation and a fast return to service.",
-  microTrust: "Backed by The GarageFloorToday Standard™",
+    "America's premium concrete coating company — engineered systems, meticulous preparation, and a documented record on every floor. Now serving homeowners and businesses nationwide.",
+  microTrust: "Backed by The GarageFloorToday Standard™ · Certified crews coast to coast",
   primaryCta: "Get My Free Estimate",
   secondaryCta: "See the Standard",
 };
+
+export const nationalStats = [
+  { id: "floors", value: 12000, suffix: "+", label: "Floors installed nationwide" },
+  { id: "markets", value: 38, suffix: "", label: "Certified local markets" },
+  { id: "states", value: 14, suffix: "", label: "States served" },
+  { id: "documented", value: 100, suffix: "%", label: "Documented on FloorPassport™" },
+];
+
+export const statesServed = [
+  "Texas", "Missouri", "Oklahoma", "Kansas", "Arkansas", "Louisiana",
+  "Colorado", "Tennessee", "Georgia", "Florida", "Illinois", "Ohio",
+  "North Carolina", "Indiana",
+];
 
 export const trustSignals: TrustSignal[] = [
   { id: "floors", icon: CheckCircle2, label: "12,000+ Floors Installed" },
