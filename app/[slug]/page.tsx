@@ -32,7 +32,7 @@ export async function generateMetadata(
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const page = allBrandPages.find((p) => p.slug === slug);
-  if (!page) notFound();
+  if (!page) return notFound();
 
   const jsonLd = [
     breadcrumbLd([{ name: "Home", path: "/" }, { name: page.h1, path: `/${page.slug}` }]),
