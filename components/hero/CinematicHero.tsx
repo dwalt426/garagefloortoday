@@ -44,6 +44,16 @@ export function CinematicHero({ h1, subhead, primaryCta, secondaryCta, microTrus
       <div className="relative z-10 w-full px-6 pb-20 pt-40">
         <div className="max-w-6xl mx-auto">
           <Reveal>
+            <Image
+              src="/logos/gft-logo-horizontal-transparent.png"
+              alt="Garage Floor Today"
+              width={280}
+              height={187}
+              priority
+              className="mb-6 h-auto w-[200px] md:w-[260px] drop-shadow-2xl"
+            />
+          </Reveal>
+          <Reveal>
             <p className="text-xs font-semibold uppercase mb-5" style={{ fontFamily: font.body, color: color.gold, letterSpacing: "0.22em" }}>
               America's Premium Concrete Coating Company
             </p>

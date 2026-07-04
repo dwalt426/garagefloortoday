@@ -7,9 +7,12 @@ import { Reveal, Stagger, CountUp } from "../components/motion/Motion";
 import { ServiceCard, CrewCard, ReviewCard } from "../components/cards/Cards";
 import { FloorPassportCard } from "../components/floorpassport/FloorPassportCard";
 import { InstallationTimeline } from "../components/timeline/InstallationTimeline";
+import { BeforeAfter } from "../features/visualizer/BeforeAfter";
+import { QuickEstimateForm } from "../features/estimator/QuickEstimateForm";
 import {
   hero, trustSignals, standardItems, timelineSteps, services,
   performanceFactors, recentProjects, featuredCrew, reviews, navColumns,
+  nationalStats, statesServed,
 } from "../data/homepage";
 
 /** Section wrapper enforcing Phase 5 spacing rhythm */
@@ -63,16 +66,11 @@ export default function HomePage() {
       <div className="px-6 py-10 relative gft-grain" style={{ background: gradient.blackDepth }}>
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4">
-            {[
-              { n: 4200, suffix: "+", label: "Floors installed" },
-              { n: 38, suffix: "", label: "Certified crews" },
-              { n: 12, suffix: "", label: "Markets served" },
-              { n: 100, suffix: "%", label: "Documented on FloorPassport™" },
-            ].map((s, i) => (
-              <Reveal key={s.label} delay={i * 80}>
+            {nationalStats.map((s, i) => (
+              <Reveal key={s.id} delay={i * 80}>
                 <div className="text-center md:border-r md:last:border-r-0" style={{ borderColor: "rgba(176,141,79,0.22)" }}>
                   <p className="text-3xl md:text-4xl font-extrabold mb-1" style={{ fontFamily: font.display, color: color.cream }}>
-                    <CountUp to={s.n} suffix={s.suffix} />
+                    <CountUp to={s.value} suffix={s.suffix} />
                   </p>
                   <p className="text-[11px] uppercase" style={{ fontFamily: font.body, color: color.gold, letterSpacing: "0.12em" }}>{s.label}</p>
                 </div>
@@ -88,6 +86,15 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <div className="gft-gold-rule mt-8 mb-6" />
+          <Reveal>
+            <p className="text-center text-[11px] uppercase mb-3" style={{ fontFamily: font.body, color: color.gray500, letterSpacing: "0.14em" }}>
+              Now serving
+            </p>
+            <p className="text-center text-sm leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: font.body, color: "rgba(246,241,231,0.65)" }}>
+              {statesServed.join(" · ")}
+            </p>
+          </Reveal>
         </div>
       </div>
 
@@ -155,12 +162,66 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 6 · Services */}
-      <Section label="Where we work" title="One standard, every surface.">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s) => <ServiceCard key={s.slug} service={s} />)}
+      {/* 5b · Before / After — interactive reveal slider */}
+      <Section label="See the difference" title="From bare slab to showpiece.">
+        <div className="grid lg:grid-cols-5 gap-10 items-center">
+          <div className="lg:col-span-3">
+            <BeforeAfter />
+          </div>
+          <div className="lg:col-span-2" style={{ fontFamily: font.body }}>
+            <p className="text-base mb-4" style={{ color: color.gray700 }}>
+              Drag to compare. What you're seeing isn't just a color change — it's a fully
+              engineered system: the slab diamond-ground with ArmorPrep™, cracks structurally
+              repaired, moisture tested and documented, then coated in the chemistry matched to
+              your garage.
+            </p>
+            <p className="text-base mb-6" style={{ color: color.gray700 }}>
+              The result is a floor that reflects light, resists hot tires and chemicals, and
+              stays beautiful for decades — not one that peels in two years.
+            </p>
+            <Button variant="secondary" href="/tools/visualizer">Try the Floor Visualizer</Button>
+          </div>
         </div>
       </Section>
+
+      {/* 5c · Why GFT — comparison table vs. the category */}
+      <Section dark label="Why GarageFloorToday" title="What a premium standard actually looks like.">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse" style={{ fontFamily: font.body }}>
+            <thead>
+              <tr>
+                <th className="text-left p-4 text-sm font-semibold" style={{ color: color.gray500 }}></th>
+                <th className="p-4 text-sm font-bold" style={{ color: color.cream }}>GarageFloorToday</th>
+                <th className="p-4 text-sm font-semibold" style={{ color: color.gray500 }}>Typical coating company</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Moisture testing, documented", true, "Rarely, if ever"],
+                ["Structural crack repair (not cosmetic)", true, "Often skipped"],
+                ["Chemistry matched to your garage", true, "One system for everyone"],
+                ["Permanent digital record (FloorPassport™)", true, "A paper receipt"],
+                ["Warranty you can actually verify", true, "\u201cLifetime\u201d — unverifiable"],
+                ["Certified crew, named on your record", true, "Rotating subcontractors"],
+              ].map(([label, , other], i) => (
+                <tr key={i} style={{ borderTop: "1px solid rgba(176,141,79,0.18)" }}>
+                  <td className="p-4 text-sm font-semibold" style={{ color: color.cream }}>{label as string}</td>
+                  <td className="p-4 text-center">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full" style={{ background: color.success }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6 9 17l-5-5" /></svg>
+                    </span>
+                  </td>
+                  <td className="p-4 text-center text-sm" style={{ color: color.gray500 }}>{other as string}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs mt-6" style={{ fontFamily: font.body, color: color.gray500 }}>
+          Comparison reflects common industry practices; individual contractors vary. GarageFloorToday commitments are backed by The GarageFloorToday Standard™.
+        </p>
+      </Section>
+
 
       {/* 7 · Crew */}
       <Section label="Meet your crew" title="Real people. On your FloorPassport by name.">
@@ -176,19 +237,41 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 9 · Final CTA — shimmer band, red sheen */}
-      <section className="px-6 py-24 relative gft-shimmer" style={{ background: gradient.redSheen }}>
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <h2 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: font.display, color: color.white }}>
-            Ready for a floor built to The Standard?
-          </h2>
-          <a
-            href="/estimate"
-            className="px-8 py-4 text-sm font-semibold no-underline"
-            style={{ fontFamily: font.body, backgroundColor: color.white, color: color.red, borderRadius: radius.sm }}
-          >
-            Get My Free Estimate
-          </a>
+      {/* 9 · Final conversion — working inline lead form + closing copy */}
+      <section className="px-6 py-24 relative gft-grain" style={{ background: gradient.blackDepth }}>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase mb-3" style={{ fontFamily: font.body, color: color.gold, letterSpacing: "0.16em" }}>
+                Start your project
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-5" style={{ fontFamily: font.display, color: color.cream, letterSpacing: "-0.015em", lineHeight: 1.05 }}>
+                Your floor deserves more than paint in a bucket.
+              </h2>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="text-lg mb-8 max-w-md" style={{ fontFamily: font.body, color: "rgba(246,241,231,0.72)" }}>
+                Tell us about your garage and a certified local crew will build you a detailed,
+                no-obligation estimate — engineered to The GarageFloorToday Standard™, documented on
+                FloorPassport™, and backed for the long haul.
+              </p>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className="flex flex-wrap gap-x-8 gap-y-3">
+                {trustSignals.map(({ id, icon: Icon, label }) => (
+                  <div key={id} className="flex items-center gap-2">
+                    <Icon size={16} strokeWidth={1.5} color={color.gold} aria-hidden />
+                    <span className="text-xs font-semibold" style={{ fontFamily: font.body, color: "rgba(246,241,231,0.7)" }}>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={120}>
+            <QuickEstimateForm />
+          </Reveal>
         </div>
       </section>
 
