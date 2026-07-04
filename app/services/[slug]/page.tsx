@@ -29,7 +29,7 @@ export async function generateMetadata(
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const page = allServicePages.find((p) => p.slug === slug);
-  if (!page) return notFound();
+  if (!page) notFound();
 
   const jsonLd = [
     serviceLd(page.h1, page.meta.description, page.slug),

@@ -12,7 +12,7 @@ const NAV = [
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const user = await getSessionUser();
   // admins may view the customer portal; installers/anon may not
-  if (!user || (user.role !== "customer" && user.role !== "admin")) return redirect("/login?next=/portal");
+  if (!user || (user.role !== "customer" && user.role !== "admin")) redirect("/login?next=/portal");
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#F6F1E7" }}>

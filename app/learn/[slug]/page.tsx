@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const a = allLearnArticles.find((x) => x.slug === slug);
-  if (!a) return notFound();
+  if (!a) notFound();
   const articleLd = {
     "@context": "https://schema.org", "@type": "Article",
     headline: a.title, datePublished: a.updatedAt, dateModified: a.updatedAt,
